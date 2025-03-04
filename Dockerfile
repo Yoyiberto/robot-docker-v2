@@ -61,13 +61,8 @@ RUN mkdir -p /code/robot_visualization/urdf \
     && mkdir -p /code/robot_visualization/meshes
 
 # Copy run script and make it executable
-COPY code/run_custom.sh /code/run.sh
+COPY run.sh /code/run.sh
 RUN chmod +x /code/run.sh
-
-# Copy Python script for IK calculation
-COPY code/robot_visualization/ik_visualization.py /code/robot_visualization/
-COPY code/robot_visualization/package.xml /code/robot_visualization/
-RUN chmod +x /code/robot_visualization/ik_visualization.py
 
 # Set environment variables
 ENV PYTHONPATH=$PYTHONPATH:/opt/ros/noetic/lib/python3/dist-packages
