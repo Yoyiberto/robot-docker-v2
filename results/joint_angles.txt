@@ -1,0 +1,11 @@
+Joint angles (radians):
+Joint 1: 0.097824
+Joint 2: 0.237412
+Joint 3: 0.014960
+Joint 4: 0.041210
+Joint 5: -0.061578
+Joint 6: 0.111371
+Joint 7: 0.000000
+
+Target position: (2.52, 0.86, -1.58)
+Achieved position: (2.52, 0.86, -1.58)

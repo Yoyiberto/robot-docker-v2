@@ -24,20 +24,23 @@ RUN apt-get update && apt-get install -y \
     python3-wstool \
     build-essential \
     python3-pip \
+    python3-pykdl \
     && rm -rf /var/lib/apt/lists/*
 
 # Initialize rosdep
 RUN rosdep init && rosdep update
 
 # Install Python dependencies
-RUN pip3 install \
-    numpy \
+RUN pip3 install --upgrade pip && \
+    pip3 install --upgrade --force-reinstall numpy==1.20.0 && \
+    pip3 install \
     matplotlib \
     pyyaml \
     rospkg \
-    PyKDL \
     transforms3d \
-    ikpy
+    ikpy && \
+    python3 -c "import numpy; print('NumPy version:', numpy.__version__)"
+    # Note: PyKDL is installed via apt package python3-pykdl, not through pip
 
 # Install additional tools for visualization
 RUN apt-get update && apt-get install -y \
@@ -53,9 +56,18 @@ RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 # Set working directory
 WORKDIR /code
 
-# Create entrypoint
-COPY code/run.sh /code/run.sh
+# Create directories for robot visualization
+RUN mkdir -p /code/robot_visualization/urdf \
+    && mkdir -p /code/robot_visualization/meshes
+
+# Copy run script and make it executable
+COPY code/run_custom.sh /code/run.sh
 RUN chmod +x /code/run.sh
+
+# Copy Python script for IK calculation
+COPY code/robot_visualization/ik_visualization.py /code/robot_visualization/
+COPY code/robot_visualization/package.xml /code/robot_visualization/
+RUN chmod +x /code/robot_visualization/ik_visualization.py
 
 # Set environment variables
 ENV PYTHONPATH=$PYTHONPATH:/opt/ros/noetic/lib/python3/dist-packages

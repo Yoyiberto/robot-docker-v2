@@ -113,7 +113,7 @@
         <parent link="arm6"/>
         <child link="endeffector"/>
         <origin rpy="0.00000000 0.00000000 0.00000000" xyz="0.00000000 0.00000000 0.00000000"/>
-        <axis xyz="100"/>
+        <axis xyz="1.00000000 0.00000000 0.00000000"/>
     </joint>
     <joint name="jnt1" type="revolute">
         <parent link="base"/>

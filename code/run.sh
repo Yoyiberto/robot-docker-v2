@@ -62,7 +62,7 @@ print(f"KDL chain created with {chain.getNrOfJoints()} joints")
 ikpy_chain = ikpy.chain.Chain.from_urdf_file(
     robot_urdf_path,
     base_elements=["base"],
-    active_links_mask=[True] * 6,  # 6 joints
+    active_links_mask=[False, True, True, True, True, True, True, False],  # 8 links total, with base and endeffector inactive
     name="robot_arm"
 )
 
