@@ -1,6 +1,9 @@
 # Robot Visualization and Inverse Kinematics
 
 This project provides a Docker container for visualizing a robot URDF model and calculating inverse kinematics without using MATLAB. It uses ROS Noetic and Python libraries to generate a 3D visualization and calculate joint angles for a given end-effector position.
+<p align="center">
+  <img src="https://github.com/Yoyiberto/robot-docker-v2/blob/836eed8d1ad3add8c5de7058ba95ccaa18446ed7/results/robot_visualization.png" alt="Robot_img" width="50%">
+</p>
 
 ## Features
 
